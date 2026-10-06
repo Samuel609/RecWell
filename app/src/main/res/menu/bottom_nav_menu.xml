@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_crowds"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="Crowds" />
+
+    <item
+        android:id="@+id/nav_classes"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Classes" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="My ID" />
+
+    <item
+        android:id="@+id/nav_updates"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="Updates"/>
+
+</menu>
