@@ -8,12 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recwell.R
 import com.example.recwell.model.Occupancy
+import kotlin.math.round
 
 class FacilityAdapter(
     private val occupancyList: List<Occupancy>
 ) : RecyclerView.Adapter<FacilityAdapter.FacilityViewHolder>() {
 
-    class FacilityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class FacilityViewHolder(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
 
         val facilityName: TextView =
             itemView.findViewById(R.id.tvFacilityName)
@@ -23,6 +25,9 @@ class FacilityAdapter(
 
         val facilityCount: TextView =
             itemView.findViewById(R.id.tvFacilityCount)
+
+        val areaStatus: TextView =
+            itemView.findViewById(R.id.tvAreaStatus)
 
         val progressBar: ProgressBar =
             itemView.findViewById(R.id.progressOccupancy)
@@ -34,7 +39,11 @@ class FacilityAdapter(
     ): FacilityViewHolder {
 
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_facility, parent, false)
+            .inflate(
+                R.layout.item_facility,
+                parent,
+                false
+            )
 
         return FacilityViewHolder(view)
     }
@@ -46,20 +55,40 @@ class FacilityAdapter(
 
         val occupancy = occupancyList[position]
 
+        // Calculate occupancy percentage and round normally
         val percentage = if (occupancy.capacity > 0) {
-            (occupancy.currentCount * 100) / occupancy.capacity
+            round(
+                occupancy.currentCount.toDouble() /
+                        occupancy.capacity * 100
+            ).toInt()
         } else {
             0
         }
 
-        holder.facilityName.text = occupancy.facilityName
+        // Area name
+        holder.facilityName.text =
+            occupancy.facilityName
 
-        holder.percentage.text = "$percentage%"
+        // Percentage
+        holder.percentage.text =
+            "$percentage%"
 
+        // Current occupancy
         holder.facilityCount.text =
             "${occupancy.currentCount} / ${occupancy.capacity} active"
 
-        holder.progressBar.progress = percentage
+        // Progress bar
+        holder.progressBar.progress =
+            percentage
+
+        // Crowd status
+        holder.areaStatus.text =
+            when {
+                percentage < 30 -> "NOT BUSY"
+                percentage < 60 -> "MODERATE"
+                percentage < 80 -> "BUSY"
+                else -> "VERY BUSY"
+            }
     }
 
     override fun getItemCount(): Int {

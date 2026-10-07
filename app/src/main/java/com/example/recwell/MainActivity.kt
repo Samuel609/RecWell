@@ -19,12 +19,10 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigation =
             findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
-        // Show Crowds when the app first opens
         if (savedInstanceState == null) {
             loadFragment(CrowdsFragment())
         }
 
-        // Change screens when a bottom button is pressed
         bottomNavigation.setOnItemSelectedListener { item ->
 
             when (item.itemId) {
@@ -48,13 +46,13 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(AnnouncementsFragment())
                     true
                 }
+
                 else -> false
             }
         }
     }
 
     private fun loadFragment(fragment: Fragment) {
-
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragmentContainer, fragment)

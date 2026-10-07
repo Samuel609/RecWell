@@ -7,44 +7,123 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <!-- Page title -->
     <TextView
         android:id="@+id/tvCrowdsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gym Crowds"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="#222222"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"
+        android:text="Good Afternoon, Gopher!"
+        android:textColor="#222222"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvCrowdsSubtitle"
+    <!-- Overall facility card -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/facilitySummaryCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Check how busy each RecWell facility is right now."
-        android:textSize="15sp"
-        android:textColor="#666666"
-        app:layout_constraintTop_toBottomOf="@id/tvCrowdsTitle"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/facility_card_background"
+        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCrowdsTitle">
 
+        <TextView
+            android:id="@+id/tvOverallPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="49%"
+            android:textColor="#8B0015"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBusyStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="MODERATE"
+            android:textColor="#8B0015"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvOverallPercentage"
+            app:layout_constraintStart_toEndOf="@id/tvOverallPercentage" />
+
+        <TextView
+            android:id="@+id/tvOverallFacilityName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="University Recreation Center"
+            android:textColor="#222222"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvOverallPercentage" />
+
+        <TextView
+            android:id="@+id/tvOverallCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="1247 / 2500 active"
+            android:textColor="#666666"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvOverallFacilityName" />
+
+        <ProgressBar
+            android:id="@+id/progressOverall"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="14dp"
+            android:max="100"
+            android:progress="49"
+            android:progressTint="#FFB000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvOverallCount"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Area section title -->
+    <TextView
+        android:id="@+id/tvAreaTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="22dp"
+        android:text="AREA OCCUPANCY BREAKDOWN"
+        android:textColor="#555555"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/facilitySummaryCard" />
+
+    <!-- Individual gym areas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFacilities"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:clipToPadding="false"
-        android:paddingTop="8dp"
+        android:paddingTop="4dp"
         android:paddingBottom="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvCrowdsSubtitle"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvAreaTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
